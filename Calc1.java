@@ -42,8 +42,8 @@ public class Calc1 {
             }
             input = String.valueOf(answer);
         } catch (NumberFormatException e) {
-            slambus Number1 = slambus.valueOf(inputStr[0]);
-            slambus Number2 = slambus.valueOf(inputStr[2]);
+            Ura Number1 = Ura.valueOf(inputStr[0]);
+            Ura Number2 = Ura.valueOf(inputStr[2]);
             a = Number1.ordinal();
             b = Number2.ordinal();
             switch (inputStr[1]) {
