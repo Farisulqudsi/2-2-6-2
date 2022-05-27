@@ -6,7 +6,6 @@ public class Calc1 {
         System.out.print("Введите пример: ");
         System.out.print(calc(input.nextLine()));
     }
-
     public static String calc(String input) {
         int a = 0, b = 0, answer = 0;
         String[] inputStr = new String[3];
@@ -18,11 +17,6 @@ public class Calc1 {
         try {
             a = Integer.parseInt(inputStr[0]);
             b = Integer.parseInt(inputStr[2]);
-            if (a > 10 || b > 10 || a < 1 || b < 1) {
-                System.out.println("Не удовлетворяет условиям калька");
-                System.exit(0);
-            }
-
             switch (inputStr[1]) {
                 case "+":
                     answer = a + b;
@@ -42,39 +36,43 @@ public class Calc1 {
             }
             input = String.valueOf(answer);
         } catch (NumberFormatException e) {
-            Ura Number1 = Ura.valueOf(inputStr[0]);
-            Ura Number2 = Ura.valueOf(inputStr[2]);
-            a = Number1.ordinal();
-            b = Number2.ordinal();
-            switch (inputStr[1]) {
-                case "+":
-                    answer = a + b;
-                    break;
-                case "-":
-                    answer = a - b;
-                    break;
-                case "*":
-                    answer = a * b;
-                    break;
-                case "/":
-                    answer = a / b;
-                    break;
-                default:
-                    System.out.println("Не удовлетворяет условиям калька");
+            try {
+                Ura Number1 = Ura.valueOf(inputStr[0]);
+                Ura Number2 = Ura.valueOf(inputStr[2]);
+                a = Number1.ordinal();
+                b = Number2.ordinal();
+                switch (inputStr[1]) {
+                    case "+":
+                        answer = a + b;
+                        break;
+                    case "-":
+                        answer = a - b;
+                        break;
+                    case "*":
+                        answer = a * b;
+                        break;
+                    case "/":
+                        answer = a / b;
+                        break;
+                    default:
+                        System.out.println("Не удовлетворяет условиям калька");
+                        System.exit(0);
+                        break;
+                }
+                if (answer<1) {
+                    System.out.println("Среди римских нет отрицательных и нуля");
                     System.exit(0);
-                    break;
-            } Ura Rima = Ura.values()[answer];
+                }
+            } catch (IllegalArgumentException d) {
+                System.out.println("Система принимает только целые числа одной СС");
+
+            }
+
+            Ura Rima = Ura.values()[answer];
             input = Rima.name();
-        } catch (IllegalArgumentException v) {
-            System.out.println("Calc принимает только целые числа одной системы счисления");
-            System.exit(0);
         }
         if (a > 10 || b > 10 || a < 1 || b < 1) {
             System.out.println("Будьте вежливы, не перегибайте палку...");
-            System.exit(0);
-        }
-        if (answer < 1) {
-            System.out.println("Римских отрицательных не бывает");
             System.exit(0);
         }
         System.out.print("Ответ: ");
